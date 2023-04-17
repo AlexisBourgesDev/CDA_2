@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+// Permet de définir une classe de Service contenant des traitements
 @Service
 public class BookService {
 

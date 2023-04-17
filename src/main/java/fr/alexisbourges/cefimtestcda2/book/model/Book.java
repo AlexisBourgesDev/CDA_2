@@ -2,6 +2,9 @@ package fr.alexisbourges.cefimtestcda2.book.model;
 
 import java.util.Objects;
 
+// Classe de données
+// Bien penser à initialiser un constructeur vide + setter pour la désérialisation (CLIENT -> API)
+// Bien penser à initialiser les getter pour la sérialisation (API -> CLIENT)
 public class Book {
     private String title;
 
@@ -20,6 +23,7 @@ public class Book {
         this.title = title;
     }
 
+    // Redéfinition de equals pour tester l'égalité entre 2 instances
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,6 +32,7 @@ public class Book {
         return Objects.equals(title, book.title);
     }
 
+    // Entier pour gérer la notion d'unicité par exemple dans les Set ou les Map
     @Override
     public int hashCode() {
         return Objects.hash(title);
