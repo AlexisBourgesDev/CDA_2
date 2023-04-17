@@ -9,6 +9,9 @@ public class Book {
         this.title = title;
     }
 
+    public Book() {
+    }
+
     public String getTitle() {
         return title;
     }
