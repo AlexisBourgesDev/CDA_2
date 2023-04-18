@@ -1,9 +1,11 @@
 package fr.alexisbourges.cefimtestcda2.book;
 
 import fr.alexisbourges.cefimtestcda2.book.model.Book;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.InstanceAlreadyExistsException;
@@ -13,6 +15,8 @@ import java.util.List;
 @RestController
 // Ajout d'un préfixe à tout nos points d'API
 @RequestMapping("/api/book")
+// Penser à la mettre pour activer les validations par annotations
+@Validated
 public class BookController {
 
     // Injection de notre classe de service
@@ -45,7 +49,11 @@ public class BookController {
     }
 
     @PatchMapping("/{id}/pages")
-    public Book updateNbPages(@PathVariable int id, @RequestBody Integer newNbPages){
+    public Book updateNbPages(@PathVariable int id,
+
+                              @RequestBody
+                              @Min(value = 0, message = "Le nombre de pages doit être positif")
+                            Integer newNbPages){
         return bookService.updateNbPages(id, newNbPages);
     }
 

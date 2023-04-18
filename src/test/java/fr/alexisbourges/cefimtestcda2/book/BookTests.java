@@ -125,6 +125,21 @@ public class BookTests {
     }
 
     @Test
+    void testPatchBookWrong() throws Exception {
+        int firstBookNbPages = bookService.getAll().get(0).getNbPages().intValue();
+        Integer newNbPages = -100;
+
+        RequestBuilder request = MockMvcRequestBuilders.patch("/api/book/0/pages").contentType(MediaType.APPLICATION_JSON).content(newNbPages.toString());
+
+        ResultMatcher resultStatus = MockMvcResultMatchers.status().isOk();
+        mockMvc.perform(request).andExpect(resultStatus);
+
+        Book newBook = bookService.getAll().get(0);
+        assert !Objects.equals(newBook.getNbPages(), firstBookNbPages);
+        assert newBook.getNbPages().equals(newNbPages);
+    }
+
+    @Test
     void testDeleteBook() throws Exception {
         int nbBooks = bookService.getAll().size();
 
