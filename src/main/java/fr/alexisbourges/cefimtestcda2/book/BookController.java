@@ -2,8 +2,11 @@ package fr.alexisbourges.cefimtestcda2.book;
 
 import fr.alexisbourges.cefimtestcda2.book.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 
 // Annotation pour définir un nouveau controller (qui va contenir une liste de points d'API)
@@ -27,15 +30,27 @@ public class BookController {
     // Dans ce cas, notre paramètre GET name aura pour valeur prince
     @GetMapping("/name")
     public List<Book> getBooksByName(@RequestParam String name){
-        // return bookService.getBooksByName(name);
-        return null;
+        return bookService.getBooksByName(name);
     }
 
     // Création d'un point d'API : [POST] /api/book
     // @RequestBody va désérialiser le contenu JSON dans un format objet Java
     @PostMapping("")
-    public Book saveBook(@RequestBody Book newBook){
-        // return bookService.saveBook(newBook);
-        return null;
+    public ResponseEntity<Book> saveBook(@RequestBody Book newBook){
+        try {
+            return ResponseEntity.ok(bookService.saveBook(newBook));
+        } catch (InstanceAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(bookService.findBook(newBook).get());
+        }
+    }
+
+    @PatchMapping("/{id}/pages")
+    public Book updateNbPages(@PathVariable int id, @RequestBody Integer newNbPages){
+        return bookService.updateNbPages(id, newNbPages);
+    }
+
+    @DeleteMapping("/{id}")
+    public Book deleteBook(@PathVariable int id){
+        return bookService.deleteBook(id);
     }
 }

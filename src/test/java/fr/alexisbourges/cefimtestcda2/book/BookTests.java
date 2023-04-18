@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 // Annotation pour préciser que cette classe contient des tests
 @SpringBootTest
@@ -87,5 +88,51 @@ public class BookTests {
         String contentAsString = mockMvc.perform(request)
                 .andExpect(resultStatus)
                 .andReturn().getResponse().getContentAsString();
+
+        Book newBook = objectMapper.readValue(contentAsString, Book.class);
+        assert newBook.equals(book);
+    }
+
+    @Test
+    void testPostBookFailed() throws Exception {
+        Book book = bookService.getAll().get(0);
+        RequestBuilder request = MockMvcRequestBuilders.post("/api/book")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(book));
+
+        ResultMatcher resultStatus = MockMvcResultMatchers.status().isConflict();
+        String contentAsString = mockMvc.perform(request)
+                .andExpect(resultStatus)
+                .andReturn().getResponse().getContentAsString();
+
+        Book newBook = objectMapper.readValue(contentAsString, Book.class);
+        assert newBook.equals(book);
+    }
+
+    @Test
+    void testPatchBook() throws Exception {
+        int firstBookNbPages = bookService.getAll().get(0).getNbPages().intValue();
+        Integer newNbPages = firstBookNbPages + 1;
+
+        RequestBuilder request = MockMvcRequestBuilders.patch("/api/book/0/pages").contentType(MediaType.APPLICATION_JSON).content(newNbPages.toString());
+
+        ResultMatcher resultStatus = MockMvcResultMatchers.status().isOk();
+        mockMvc.perform(request).andExpect(resultStatus);
+
+        Book newBook = bookService.getAll().get(0);
+        assert !Objects.equals(newBook.getNbPages(), firstBookNbPages);
+        assert newBook.getNbPages().equals(newNbPages);
+    }
+
+    @Test
+    void testDeleteBook() throws Exception {
+        int nbBooks = bookService.getAll().size();
+
+        RequestBuilder request = MockMvcRequestBuilders.delete("/api/book/0");
+        ResultMatcher resultStatus = MockMvcResultMatchers.status().isOk();
+        mockMvc.perform(request).andExpect(resultStatus);
+
+        List<Book> listBooksAfterDelete = bookService.getAll();
+        assert nbBooks - 1 == listBooksAfterDelete.size();
     }
 }
