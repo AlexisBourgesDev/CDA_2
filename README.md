@@ -22,3 +22,8 @@ Ecrire des points d'API POST, PUT, DELETE pour créer un CRUD complet
 - Modifier le nombre de pages d'un livre
 - Supprimer un livre par son nom (erreur si plusieurs livres avec le même nom)
 
+18/04 14h
+
+- Ajouter une validation pour avoir un nombre de pages positif
+- Ajouter un champ mail pour un client
+- Ajouter une validation pour vérifier que l'adresse mail est valide
