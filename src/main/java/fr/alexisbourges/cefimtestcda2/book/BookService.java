@@ -1,13 +1,12 @@
 package fr.alexisbourges.cefimtestcda2.book;
 
-import fr.alexisbourges.cefimtestcda2.book.model.Book;
-import fr.alexisbourges.cefimtestcda2.client.model.Client;
 import fr.alexisbourges.cefimtestcda2.client.model.ClientService;
+import fr.alexisbourges.cefimtestcda2.entities.Book;
+import fr.alexisbourges.cefimtestcda2.entities.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceAlreadyExistsException;
-import java.lang.module.FindException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +17,9 @@ public class BookService {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private BookRepository bookRepository;
+
     private List<Book> listBook = new ArrayList<>(){{
         add(new Book("Le petit prince", 900));
     }};
@@ -27,16 +29,22 @@ public class BookService {
     }
 
     public List<Book> getAll(){
-        return listBook;
+        return bookRepository.findAll();
     }
 
-    public Book saveBook(Book newBook) throws InstanceAlreadyExistsException {
+    // Via List et classe métier
+    public Book saveBookInList(Book newBook) throws InstanceAlreadyExistsException {
         Optional<Book> book = findBook(newBook);
         if (book.isPresent()){
             throw new InstanceAlreadyExistsException(String.valueOf(listBook.indexOf(newBook)));
         }
         listBook.add(newBook);
         return newBook;
+    }
+
+    // VIA BDD (Repository)
+    public Book saveBook(Book book){
+        return bookRepository.save(book);
     }
 
     public Optional<Book> findBook(Book book){

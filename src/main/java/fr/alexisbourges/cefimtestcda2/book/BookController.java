@@ -1,6 +1,6 @@
 package fr.alexisbourges.cefimtestcda2.book;
 
-import fr.alexisbourges.cefimtestcda2.book.model.Book;
+import fr.alexisbourges.cefimtestcda2.entities.Book;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class BookController {
     // Création d'un point d'API : [GET] /api/book/all
     // On concatène le préfixe au point d'API spécifié
     @GetMapping("/all")
-    public List<Book> getAllBooks(){
+    public List<fr.alexisbourges.cefimtestcda2.entities.Book> getAllBooks(){
         return bookService.getAll();
     }
 
@@ -40,9 +40,9 @@ public class BookController {
     // Création d'un point d'API : [POST] /api/book
     // @RequestBody va désérialiser le contenu JSON dans un format objet Java
     @PostMapping("")
-    public ResponseEntity<Book> saveBook(@RequestBody Book newBook){
+    public ResponseEntity<Book> saveBookInList(@RequestBody Book newBook){
         try {
-            return ResponseEntity.ok(bookService.saveBook(newBook));
+            return ResponseEntity.ok(bookService.saveBookInList(newBook));
         } catch (InstanceAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(bookService.findBook(newBook).get());
         }

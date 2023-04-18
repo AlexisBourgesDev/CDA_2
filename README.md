@@ -1,4 +1,10 @@
-17/04 10h : 
+LIBRAIRIE UTILES :
+
+- LOMBOK
+
+
+17/04 10h
+=========
 
 Créer une classe Livre (titre, description, nbPages, Auteur)
 Créer une classe Auteur (nom, prenom, date de naissance[int])
@@ -23,7 +29,22 @@ Ecrire des points d'API POST, PUT, DELETE pour créer un CRUD complet
 - Supprimer un livre par son nom (erreur si plusieurs livres avec le même nom)
 
 18/04 14h
+=========
 
 - Ajouter une validation pour avoir un nombre de pages positif
 - Ajouter un champ mail pour un client
 - Ajouter une validation pour vérifier que l'adresse mail est valide
+
+18/04 15h
+=========
+
+<<BACKLOG>>
+
+Je veux stocker une liste de livres avec un titre, une description, un nombre de pages et un état du livre (NEUF, BON ETAT, ABIME ...). 
+Chaque livre a un genre littéraire ayant un nom (fantastique, policier ...) et un auteur (nom, prenom, date de naissance)
+On aura une liste de clients, identifiés par un nom, prénom, adresse mail et âge
+On peut écrire des avis sur un livre (plusieurs par livre) avec pour chaque avis, une note de 1 à 10 (pas de 0 possible et pas de 1.5)
+Chaque client pourra réserver un ou plusieurs livres (3 max en même temps) et on pourra retrouver l'historique des réservations d'un client
+
+BUT : Transformer les classes métiers -> Entités 
+Compléter le code pour intégrer le backlog
