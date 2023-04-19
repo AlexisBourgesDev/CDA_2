@@ -21,6 +21,15 @@ public class Book {
     @Column(name = "nb_pages")
     private Integer nbPages;
 
+    // Paramètre fetch de @ManyToOne
+    // EAGER (default) : Récupération de l'auteur en même temps que le Book
+    // LAZY : Récupération différé au moment où on accède à cet attribut
+    @ManyToOne
+    @JoinColumn(name = "author_id", updatable = false, insertable = false)
+    private Author author;
+
+
+
     public Book() {
     }
 

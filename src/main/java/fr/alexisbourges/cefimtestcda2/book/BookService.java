@@ -62,6 +62,6 @@ public class BookService {
     }
 
     public List<Book> getBooksByName(String name) {
-        return listBook.stream().filter(book -> book.getTitle().contains(name)).toList();
+        return listBook.stream().filter(book -> book.getName().contains(name)).toList();
     }
 }
