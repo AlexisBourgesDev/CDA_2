@@ -3,6 +3,7 @@ package fr.alexisbourges.cefimtestcda2.book;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.alexisbourges.cefimtestcda2.entities.Book;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,6 +23,7 @@ import java.util.Objects;
 @SpringBootTest
 // Permet au MockMvc de se configurer pour attaquer notre API
 @AutoConfigureMockMvc
+@Transactional
 public class BookTests {
     @Autowired
     private BookService bookService;

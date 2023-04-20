@@ -48,3 +48,9 @@ Chaque client pourra réserver un ou plusieurs livres (3 max en même temps) et 
 
 BUT : Transformer les classes métiers -> Entités 
 Compléter le code pour intégrer le backlog
+
+20/04 10h
+
+Etapes pour créer une classe composite :
+
+

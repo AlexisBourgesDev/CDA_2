@@ -21,4 +21,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("select b from Book b where b.nbPages > :minimumPages")
     List<Book> findByBigBooksByAlias(@Param("minimumPages") Integer nbPages);
 
+    List<Book> findByAuthorId(int authorId);
+
+
+
 }

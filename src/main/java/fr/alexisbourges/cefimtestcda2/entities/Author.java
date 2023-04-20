@@ -19,8 +19,8 @@ public class Author {
     // @OneToMany
     // targetEntity : Class<?> de l'entité cible
     // mappedBy : Nom de l'attribut annoté de @ManyToOne
-    @OneToMany(targetEntity = Book.class, mappedBy = "author")
-    private List<Book> books;
+    //@OneToMany(targetEntity = Book.class, mappedBy = "author")
+    //private List<Book> books;
 
 
     public Author() {

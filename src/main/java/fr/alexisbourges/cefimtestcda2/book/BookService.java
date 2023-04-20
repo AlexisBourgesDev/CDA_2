@@ -1,8 +1,12 @@
 package fr.alexisbourges.cefimtestcda2.book;
 
+import fr.alexisbourges.cefimtestcda2.author.AuthorWithBooks;
 import fr.alexisbourges.cefimtestcda2.client.model.ClientService;
+import fr.alexisbourges.cefimtestcda2.entities.Author;
 import fr.alexisbourges.cefimtestcda2.entities.Book;
+import fr.alexisbourges.cefimtestcda2.entities.repository.AuthorRepository;
 import fr.alexisbourges.cefimtestcda2.entities.repository.BookRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,8 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
     private List<Book> listBook = new ArrayList<>(){{
         add(new Book("Le petit prince", 900));
@@ -28,7 +34,7 @@ public class BookService {
         return "Hello Book !!!";
     }
 
-    public List<Book> getAll(){
+    public List<Book> getAll() {
         return bookRepository.findAll();
     }
 
@@ -63,5 +69,9 @@ public class BookService {
 
     public List<Book> getBooksByName(String name) {
         return listBook.stream().filter(book -> book.getName().contains(name)).toList();
+    }
+
+    public List<Book> getBooksForAuthor(int authorId) {
+        return bookRepository.findByAuthorId(authorId);
     }
 }
