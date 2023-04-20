@@ -38,15 +38,16 @@ Ecrire des points d'API POST, PUT, DELETE pour créer un CRUD complet
 18/04 15h
 =========
 
-<<BACKLOG>>
+BACKLOG
+-------
 
-Je veux stocker une liste de livres avec un titre, une description, un nombre de pages et un état du livre (NEUF, BON ETAT, ABIME ...). 
-Chaque livre a un genre littéraire ayant un nom (fantastique, policier ...) et un auteur (nom, prenom, date de naissance)
-On aura une liste de clients, identifiés par un nom, prénom, adresse mail et âge
-On peut écrire des avis sur un livre (plusieurs par livre) avec pour chaque avis, une note de 1 à 10 (pas de 0 possible et pas de 1.5)
-Chaque client pourra réserver un ou plusieurs livres (3 max en même temps) et on pourra retrouver l'historique des réservations d'un client
+- Je veux stocker une liste de livres avec un titre, une description, un nombre de pages et un état du livre (NEUF, BON ETAT, ABIME ...). 
+- Chaque livre a un genre littéraire ayant un nom (fantastique, policier ...) et un auteur (nom, prenom, date de naissance)
+- On aura une liste de clients, identifiés par un nom, prénom, adresse mail et âge
+- On peut écrire des avis sur un livre (plusieurs par livre) avec pour chaque avis, une note de 1 à 10 (pas de 0 possible et pas de 1.5)
+- Chaque client pourra réserver un ou plusieurs livres (3 max en même temps) et on pourra retrouver l'historique des réservations d'un client
 
-BUT : Transformer les classes métiers -> Entités 
+BUT : Transformer les classes métiers -> Entités  
 Compléter le code pour intégrer le backlog
 
 20/04 10h
@@ -54,10 +55,10 @@ Compléter le code pour intégrer le backlog
 
 Etapes pour créer une classe composite :
 
-Création d'une classe composite Auteur avec ses livres (AuthorWithBooks) avec un auteur et sa liste de livres
-Création d'un point d'API dans AuthorController pour avoir un ID d'auteur
-Création d'une méthode principal dans AuthorService pour récupérer l'auteur et si il existe : 
+- Création d'une classe composite Auteur avec ses livres (AuthorWithBooks) avec un auteur et sa liste de livres
+- Création d'un point d'API dans AuthorController pour avoir un ID d'auteur
+- Création d'une méthode principal dans AuthorService pour récupérer l'auteur et si il existe : 
 - Demander à BookService la liste des livres qui ont comme auteur identifié par ID
-Merger dans la méthode de AuthorService l'auteur + la liste de livres et la renvoyer 
-Gestion du cas où un auteur n'est pas trouvé
+- Merger dans la méthode de AuthorService l'auteur + la liste de livres et la renvoyer 
+- Gestion du cas où un auteur n'est pas trouvé
 
