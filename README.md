@@ -50,7 +50,14 @@ BUT : Transformer les classes métiers -> Entités
 Compléter le code pour intégrer le backlog
 
 20/04 10h
+=========
 
 Etapes pour créer une classe composite :
 
+Création d'une classe composite Auteur avec ses livres (AuthorWithBooks) avec un auteur et sa liste de livres
+Création d'un point d'API dans AuthorController pour avoir un ID d'auteur
+Création d'une méthode principal dans AuthorService pour récupérer l'auteur et si il existe : 
+- Demander à BookService la liste des livres qui ont comme auteur identifié par ID
+Merger dans la méthode de AuthorService l'auteur + la liste de livres et la renvoyer 
+Gestion du cas où un auteur n'est pas trouvé
 
