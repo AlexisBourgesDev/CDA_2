@@ -1,21 +1,16 @@
 package fr.alexisbourges.cefimtestcda2.book;
 
-import fr.alexisbourges.cefimtestcda2.author.AuthorWithBooks;
 import fr.alexisbourges.cefimtestcda2.client.model.ClientService;
-import fr.alexisbourges.cefimtestcda2.entities.Author;
 import fr.alexisbourges.cefimtestcda2.entities.Book;
 import fr.alexisbourges.cefimtestcda2.entities.repository.AuthorRepository;
 import fr.alexisbourges.cefimtestcda2.entities.repository.BookRepository;
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceAlreadyExistsException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 // Permet de définir une classe de Service contenant des traitements
 @Service
@@ -27,6 +22,9 @@ public class BookService {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     private List<Book> listBook = new ArrayList<>(){{
         add(new Book("Le petit prince", 900));
