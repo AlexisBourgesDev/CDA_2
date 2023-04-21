@@ -62,3 +62,8 @@ Etapes pour créer une classe composite :
 - Merger dans la méthode de AuthorService l'auteur + la liste de livres et la renvoyer 
 - Gestion du cas où un auteur n'est pas trouvé
 
+21/04 14h
+=========
+
+Créer un point d'API : [GET] /api/book/1/note => Renvoie la note moyenne d'un livre
+Utiliser entityManager en prenant comme exemple ClientService::getBestGenreForClient
