@@ -1,6 +1,7 @@
 package fr.alexisbourges.cefimtestcda2.client.model;
 
-import fr.alexisbourges.cefimtestcda2.book.model.Book;
+
+import fr.alexisbourges.cefimtestcda2.entities.Book;
 
 import java.util.ArrayList;
 import java.util.List;
